@@ -1,2 +1,5 @@
 plataformalancamentofinanceiro/resource/GerenciadorPessoaResource.class
 plataformalancamentofinanceiro/application/ApplicationRest.class
+plataformalancamentofinanceiro/factory/GerenciadorPessoaFactory.class
+plataformalancamentofinanceiro/entity/GerenciadorPessoaDomain.class
+plataformalancamentofinanceiro/enumeration/TipoPessoaEnumeration.class
