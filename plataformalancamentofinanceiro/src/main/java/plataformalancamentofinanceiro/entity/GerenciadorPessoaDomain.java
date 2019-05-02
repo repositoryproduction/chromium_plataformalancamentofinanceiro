@@ -2,8 +2,11 @@ package plataformalancamentofinanceiro.entity;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import plataformalancamentofinanceiro.enumeration.TipoPessoaEnumeration;
 
+@XmlRootElement
 public class GerenciadorPessoaDomain implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -97,7 +100,9 @@ public class GerenciadorPessoaDomain implements Serializable {
 
 	@Override
 	public String toString() {
-		return "GerenciadorPessoaDomain [codigo=" + codigo + ", nome=" + nome + "]";
+		return "GerenciadorPessoaDomain [codigo=" + codigo + ", nome=" + nome + ", tipoPessoaEnumeration="
+				+ tipoPessoaEnumeration + ", isFontePagamento=" + isFontePagamento + ", isAtivo=" + isAtivo
+				+ ", observacao=" + observacao + "]";
 	}
 	
 }

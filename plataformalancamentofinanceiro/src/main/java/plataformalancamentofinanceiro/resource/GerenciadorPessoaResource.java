@@ -21,6 +21,8 @@ import plataformalancamentofinanceiro.entity.GerenciadorPessoaDomain;
 import plataformalancamentofinanceiro.enumeration.TipoPessoaEnumeration;
 
 @Path("gerenciadorPessoaResource")
+@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_ATOM_XML})
+@Consumes(MediaType.APPLICATION_JSON)
 public class GerenciadorPessoaResource implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -38,7 +40,6 @@ public class GerenciadorPessoaResource implements Serializable {
 	
 	@GET
 	@Path("/")
-	@Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
 	public List<GerenciadorPessoaDomain> findAll() {
 		GerenciadorPessoaDomain gerenciadorPessoaDomainHassya = new GerenciadorPessoaDomain();
 			gerenciadorPessoaDomainHassya.setCodigo(1L);
