@@ -1,7 +1,6 @@
 package plataformalancamentofinanceiro.resource;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -15,10 +14,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.apache.log4j.Logger;
-
-import plataformalancamentofinanceiro.entity.GerenciadorPessoaDomain;
+import plataformalancamentofinanceiro.entity.GerenciadorPessoaEntity;
 import plataformalancamentofinanceiro.enumeration.TipoPessoaEnumeration;
+import plataformalancamentofinanceiro.service.GerenciadorPessoaService;
+import plataformalancamentofinanceiro.view.GerenciadorPessoaView;
 
 @Path("gerenciadorPessoaResource")
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_ATOM_XML})
@@ -27,9 +26,16 @@ public class GerenciadorPessoaResource implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static final Logger LOGGER = Logger.getLogger(GerenciadorPessoaResource.class);
-
-	public GerenciadorPessoaResource() { }
+//	private static final Logger LOGGER = Logger.getLogger(GerenciadorPessoaResource.class);
+	
+	private GerenciadorPessoaService gerenciadorPessoaService;
+	
+	private GerenciadorPessoaView gerenciadorPessoaView;
+	
+	public GerenciadorPessoaResource() {
+		gerenciadorPessoaService = new GerenciadorPessoaService();
+		gerenciadorPessoaView = new GerenciadorPessoaView();
+	}
 	
 	@GET
 	@Produces({MediaType.TEXT_PLAIN, MediaType.TEXT_HTML, MediaType.APPLICATION_JSON})
@@ -40,78 +46,94 @@ public class GerenciadorPessoaResource implements Serializable {
 	
 	@GET
 	@Path("/")
-	public List<GerenciadorPessoaDomain> findAll() {
-		GerenciadorPessoaDomain gerenciadorPessoaDomainHassya = new GerenciadorPessoaDomain();
-			gerenciadorPessoaDomainHassya.setCodigo(1L);
-			gerenciadorPessoaDomainHassya.setNome("Hassya Havivah");
-			gerenciadorPessoaDomainHassya.setObservacao("");
-			gerenciadorPessoaDomainHassya.setIsAtivo(Boolean.TRUE);
-			gerenciadorPessoaDomainHassya.setIsFontePagamento(Boolean.TRUE);
-			gerenciadorPessoaDomainHassya.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
-		GerenciadorPessoaDomain gerenciadorPessoaDomainQuintinn = new GerenciadorPessoaDomain();
-			gerenciadorPessoaDomainQuintinn.setCodigo(2L);
-			gerenciadorPessoaDomainQuintinn.setNome("José Quintin");
-			gerenciadorPessoaDomainQuintinn.setObservacao(null);
-			gerenciadorPessoaDomainQuintinn.setIsAtivo(Boolean.TRUE);
-			gerenciadorPessoaDomainQuintinn.setIsFontePagamento(Boolean.TRUE);
-			gerenciadorPessoaDomainQuintinn.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
-		List<GerenciadorPessoaDomain> gerenciadorPessoaDomainList = new ArrayList<GerenciadorPessoaDomain>();
-			gerenciadorPessoaDomainList.add(gerenciadorPessoaDomainHassya);
-			gerenciadorPessoaDomainList.add(gerenciadorPessoaDomainQuintinn);
-		return gerenciadorPessoaDomainList;
+	public List<GerenciadorPessoaEntity> findAll() {
+		return gerenciadorPessoaService.findAll(gerenciadorPessoaView.getGerenciadorPessoaEntity());
 	}
+	
+//	public List<GerenciadorPessoaEntity> findAll() {
+//		GerenciadorPessoaEntity gerenciadorPessoaDomainHassya = new GerenciadorPessoaEntity();
+//			gerenciadorPessoaDomainHassya.setCodigo(1L);
+//			gerenciadorPessoaDomainHassya.setNome("Hassya Havivah");
+//			gerenciadorPessoaDomainHassya.setObservacao("");
+//			gerenciadorPessoaDomainHassya.setIsAtivo(Boolean.TRUE);
+//			gerenciadorPessoaDomainHassya.setIsFontePagamento(Boolean.TRUE);
+//			gerenciadorPessoaDomainHassya.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
+//		GerenciadorPessoaEntity gerenciadorPessoaDomainQuintinn = new GerenciadorPessoaEntity();
+//			gerenciadorPessoaDomainQuintinn.setCodigo(2L);
+//			gerenciadorPessoaDomainQuintinn.setNome("José Quintin");
+//			gerenciadorPessoaDomainQuintinn.setObservacao(null);
+//			gerenciadorPessoaDomainQuintinn.setIsAtivo(Boolean.TRUE);
+//			gerenciadorPessoaDomainQuintinn.setIsFontePagamento(Boolean.TRUE);
+//			gerenciadorPessoaDomainQuintinn.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
+//		List<GerenciadorPessoaEntity> gerenciadorPessoaDomainList = new ArrayList<GerenciadorPessoaEntity>();
+//			gerenciadorPessoaDomainList.add(gerenciadorPessoaDomainHassya);
+//			gerenciadorPessoaDomainList.add(gerenciadorPessoaDomainQuintinn);
+//		return gerenciadorPessoaDomainList;
+//	}
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("{nomeUsuarioSistema}/")
-	public GerenciadorPessoaDomain findOne(@PathParam("nomeUsuarioSistema") String nomeUsuarioSistema) {
-		GerenciadorPessoaDomain gerenciadorPessoaDomain = new GerenciadorPessoaDomain();
-			gerenciadorPessoaDomain.setCodigo(1L);
-			gerenciadorPessoaDomain.setNome(nomeUsuarioSistema);
-			gerenciadorPessoaDomain.setObservacao("");
-			gerenciadorPessoaDomain.setIsAtivo(Boolean.TRUE);
-			gerenciadorPessoaDomain.setIsFontePagamento(Boolean.TRUE);
-			gerenciadorPessoaDomain.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
-		return gerenciadorPessoaDomain;
+	public GerenciadorPessoaEntity findOne(@PathParam("nomeUsuarioSistema") String nomeUsuarioSistema) {
+		GerenciadorPessoaEntity gerenciadorPessoaEntity = new GerenciadorPessoaEntity();
+			gerenciadorPessoaEntity.setCodigo(1L);
+			gerenciadorPessoaEntity.setNome(nomeUsuarioSistema);
+			gerenciadorPessoaEntity.setObservacao("");
+			gerenciadorPessoaEntity.setIsAtivo(Boolean.TRUE);
+			gerenciadorPessoaEntity.setIsFontePagamento(Boolean.TRUE);
+			gerenciadorPessoaEntity.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
+		return gerenciadorPessoaEntity;
 	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/")
-	public Response persist(GerenciadorPessoaDomain gerenciadorPessoaDomain) {
-			LOGGER.info(gerenciadorPessoaDomain.getCodigo());
-			LOGGER.info(gerenciadorPessoaDomain.getNome());
-			LOGGER.info(gerenciadorPessoaDomain.getIsAtivo());
-			LOGGER.info(gerenciadorPessoaDomain.getIsFontePagamento());
-			LOGGER.info(gerenciadorPessoaDomain.getObservacao());
-			LOGGER.info(gerenciadorPessoaDomain.getTipoPessoaEnumeration());
-			LOGGER.info(gerenciadorPessoaDomain.toString());
+	public Response persist(GerenciadorPessoaEntity gerenciadorPessoaEntity) {
+//			LOGGER.info(gerenciadorPessoaEntity.getCodigo());
+//			LOGGER.info(gerenciadorPessoaEntity.getNome());
+//			LOGGER.info(gerenciadorPessoaEntity.getIsAtivo());
+//			LOGGER.info(gerenciadorPessoaEntity.getIsFontePagamento());
+//			LOGGER.info(gerenciadorPessoaEntity.getObservacao());
+//			LOGGER.info(gerenciadorPessoaEntity.getTipoPessoaEnumeration());
+//			LOGGER.info(gerenciadorPessoaEntity.toString());
 		return Response.status(Response.Status.OK).build();
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/")
-	public Response merge(GerenciadorPessoaDomain gerenciadorPessoaDomain) {
-			LOGGER.info(gerenciadorPessoaDomain.getCodigo());
-			LOGGER.info(gerenciadorPessoaDomain.getNome());
-			LOGGER.info(gerenciadorPessoaDomain.getIsAtivo());
-			LOGGER.info(gerenciadorPessoaDomain.getIsFontePagamento());
-			LOGGER.info(gerenciadorPessoaDomain.getObservacao());
-			LOGGER.info(gerenciadorPessoaDomain.getTipoPessoaEnumeration());
-			LOGGER.info(gerenciadorPessoaDomain.toString());
+	public Response merge(GerenciadorPessoaEntity gerenciadorPessoaEntity) {
+//			LOGGER.info(gerenciadorPessoaEntity.getCodigo());
+//			LOGGER.info(gerenciadorPessoaEntity.getNome());
+//			LOGGER.info(gerenciadorPessoaEntity.getIsAtivo());
+//			LOGGER.info(gerenciadorPessoaEntity.getIsFontePagamento());
+//			LOGGER.info(gerenciadorPessoaEntity.getObservacao());
+//			LOGGER.info(gerenciadorPessoaEntity.getTipoPessoaEnumeration());
+//			LOGGER.info(gerenciadorPessoaEntity.toString());
 		return Response.status(Response.Status.OK).build();
 	}
 	
 	@DELETE
 	@Path("{codigo}/")
 	public Response remove(@PathParam("codigo") Long codigo) {
-		LOGGER.info("Dados excluido com sucesso: " + codigo);
+//		LOGGER.info("Dados excluido com sucesso: " + codigo);
 		return Response.status(Response.Status.OK).build();
 	}
-	
-	public static Logger getLogger() {
-		return LOGGER;
+
+	public GerenciadorPessoaService getGerenciadorPessoaService() {
+		return gerenciadorPessoaService;
 	}
+
+	public void setGerenciadorPessoaService(GerenciadorPessoaService gerenciadorPessoaService) {
+		this.gerenciadorPessoaService = gerenciadorPessoaService;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+//	public static Logger getLogger() {
+//		return LOGGER;
+//	}
 	
 }

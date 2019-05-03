@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import plataformalancamentofinanceiro.entity.GerenciadorPessoaDomain;
+import plataformalancamentofinanceiro.entity.GerenciadorPessoaEntity;
 import plataformalancamentofinanceiro.enumeration.TipoPessoaEnumeration;
 
 public class GerenciadorPessoaFactory implements Serializable {
@@ -13,30 +13,30 @@ public class GerenciadorPessoaFactory implements Serializable {
 	
 	public GerenciadorPessoaFactory() { }
 	
-	public static GerenciadorPessoaDomain obterNovaPessoaFisica() {
-		GerenciadorPessoaDomain gerenciadorPessoaDomain = new GerenciadorPessoaDomain();
-			gerenciadorPessoaDomain.setCodigo(null);
-			gerenciadorPessoaDomain.setNome(null);
-			gerenciadorPessoaDomain.setObservacao(null);
-			gerenciadorPessoaDomain.setIsAtivo(Boolean.TRUE);
-			gerenciadorPessoaDomain.setIsFontePagamento(Boolean.TRUE);
-			gerenciadorPessoaDomain.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
-		return gerenciadorPessoaDomain;
+	public static GerenciadorPessoaEntity obterNovaPessoaFisica() {
+		GerenciadorPessoaEntity gerenciadorPessoaEntity = new GerenciadorPessoaEntity();
+			gerenciadorPessoaEntity.setCodigo(null);
+			gerenciadorPessoaEntity.setNome(null);
+			gerenciadorPessoaEntity.setObservacao(null);
+			gerenciadorPessoaEntity.setIsAtivo(Boolean.TRUE);
+			gerenciadorPessoaEntity.setIsFontePagamento(Boolean.TRUE);
+			gerenciadorPessoaEntity.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
+		return gerenciadorPessoaEntity;
 	}
 	
-	public static GerenciadorPessoaDomain obterNovaPessoaFisica(GerenciadorPessoaDomain gerenciadorPessoaDomainParameter) {
-		GerenciadorPessoaDomain gerenciadorPessoaDomain = new GerenciadorPessoaDomain();
-			gerenciadorPessoaDomain.setCodigo(null);
-			gerenciadorPessoaDomain.setNome(gerenciadorPessoaDomainParameter.getNome());
-			gerenciadorPessoaDomain.setObservacao(gerenciadorPessoaDomainParameter.getObservacao());
-			gerenciadorPessoaDomain.setIsAtivo(Boolean.TRUE);
-			gerenciadorPessoaDomain.setIsFontePagamento(Boolean.TRUE);
-			gerenciadorPessoaDomain.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
-		return gerenciadorPessoaDomain;
+	public static GerenciadorPessoaEntity obterNovaPessoaFisica(GerenciadorPessoaEntity gerenciadorPessoaDomainParameter) {
+		GerenciadorPessoaEntity gerenciadorPessoaEntity = new GerenciadorPessoaEntity();
+			gerenciadorPessoaEntity.setCodigo(null);
+			gerenciadorPessoaEntity.setNome(gerenciadorPessoaDomainParameter.getNome());
+			gerenciadorPessoaEntity.setObservacao(gerenciadorPessoaDomainParameter.getObservacao());
+			gerenciadorPessoaEntity.setIsAtivo(Boolean.TRUE);
+			gerenciadorPessoaEntity.setIsFontePagamento(Boolean.TRUE);
+			gerenciadorPessoaEntity.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
+		return gerenciadorPessoaEntity;
 	}
 	
-	public static List<GerenciadorPessoaDomain> findAll() {
-		List<GerenciadorPessoaDomain> gerenciadorPessoaDomainList = new ArrayList<GerenciadorPessoaDomain>();
+	public static List<GerenciadorPessoaEntity> findAll() {
+		List<GerenciadorPessoaEntity> gerenciadorPessoaDomainList = new ArrayList<GerenciadorPessoaEntity>();
 			gerenciadorPessoaDomainList.add(obterNovaPessoaFisica(obterNovaPessoaFisica()));
 		return gerenciadorPessoaDomainList;
 	}
