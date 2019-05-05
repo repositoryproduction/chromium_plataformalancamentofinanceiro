@@ -192,7 +192,7 @@
 				<div id="navigation">
 					<!-- Navigation Menu-->
 					<ul class="navigation-menu">
-						<li class="has-submenu"><a href="../../../index.html"><i class="fi-air-play"></i> <span> Principal </span> </a></li>
+						<li class="has-submenu"><a href="../../../index.html"><i class="fi-air-play"></i> <span> Visão Geral </span> </a></li>
 
 
 						<li class="has-submenu"><a href="#"><i class="fi-briefcase"></i><span> Funcionalidades de Gerenciamento
@@ -443,16 +443,16 @@
                                     </thead>
                                     <tbody>
                                     <tr ng-repeat="gerenciadorPessoaModelResult in gerenciadorPessoaModelList">
-                                        <td>{{gerenciadorPessoaModelResult.codigo}}</td>
-                                        <td>{{gerenciadorPessoaModelResult.nome}}</td>
-                                        <td>{{gerenciadorPessoaModelResult.isAtivo}}</td>
-                                        <td>{{gerenciadorPessoaModelResult.nomeIsFontePagamento}}</td>
-                                        <td>{{gerenciadorPessoaModelResult.tipoPessoaEnumeration}}</td>
+                                        <td ng-dblclick="merge(gerenciadorPessoaModelResult)">{{gerenciadorPessoaModelResult.codigo}}</td>
+                                        <td ng-dblclick="merge(gerenciadorPessoaModelResult)">{{gerenciadorPessoaModelResult.nome}}</td>
+                                        <td ng-dblclick="merge(gerenciadorPessoaModelResult)">{{gerenciadorPessoaModelResult.isAtivo}}</td>
+                                        <td ng-dblclick="merge(gerenciadorPessoaModelResult)">{{gerenciadorPessoaModelResult.isFontePagamento}}</td>
+                                        <td ng-dblclick="merge(gerenciadorPessoaModelResult)">{{gerenciadorPessoaModelResult.tipoPessoaEnumeration.getDescricao()}}</td>
                                         <td>
                                         	<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"> 
                                         		<i class="fa fa-edit"></i> 
                                         	</button>
-                                        	<button type="button" class="btn btn-icon waves-effect waves-light btn-danger"> 
+                                        	<button type="button" ng-click="merge(gerenciadorPessoaModelResult)" class="btn btn-icon waves-effect waves-light btn-danger"> 
                                         		<i class="fa fa-remove"></i> 
                                         	</button>
                                         </td>

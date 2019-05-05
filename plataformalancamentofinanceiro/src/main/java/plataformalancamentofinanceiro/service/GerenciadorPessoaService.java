@@ -6,6 +6,7 @@ import java.util.List;
 import plataformalancamentofinanceiro.dao.GerenciadorPessoaDao;
 import plataformalancamentofinanceiro.dao.GerenciadorPessoaDaoInterface;
 import plataformalancamentofinanceiro.entity.GerenciadorPessoaEntity;
+import plataformalancamentofinanceiro.factory.GerenciadorPessoaFactory;
 
 public class GerenciadorPessoaService implements GerenciadorPessoaDaoInterface, Serializable {
 
@@ -13,8 +14,11 @@ public class GerenciadorPessoaService implements GerenciadorPessoaDaoInterface, 
 	
 	public GerenciadorPessoaDao gerenciadorPessoaDao;
 	
+	public GerenciadorPessoaFactory gerenciadorPessoaFactory;
+	
 	public GerenciadorPessoaService() {
 		gerenciadorPessoaDao = new GerenciadorPessoaDao();
+		gerenciadorPessoaFactory = new GerenciadorPessoaFactory();
 	}
 
 	@Override
@@ -61,6 +65,14 @@ public class GerenciadorPessoaService implements GerenciadorPessoaDaoInterface, 
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public GerenciadorPessoaFactory getGerenciadorPessoaFactory() {
+		return gerenciadorPessoaFactory;
+	}
+
+	public void setGerenciadorPessoaFactory(GerenciadorPessoaFactory gerenciadorPessoaFactory) {
+		this.gerenciadorPessoaFactory = gerenciadorPessoaFactory;
 	}
 	
 }

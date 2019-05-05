@@ -14,6 +14,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.jboss.logging.Logger;
+
 import plataformalancamentofinanceiro.entity.GerenciadorPessoaEntity;
 import plataformalancamentofinanceiro.enumeration.TipoPessoaEnumeration;
 import plataformalancamentofinanceiro.service.GerenciadorPessoaService;
@@ -26,7 +28,7 @@ public class GerenciadorPessoaResource implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-//	private static final Logger LOGGER = Logger.getLogger(GerenciadorPessoaResource.class);
+	private static final Logger LOGGER = Logger.getLogger(GerenciadorPessoaResource.class);
 	
 	private GerenciadorPessoaService gerenciadorPessoaService;
 	
@@ -50,27 +52,6 @@ public class GerenciadorPessoaResource implements Serializable {
 		return gerenciadorPessoaService.findAll(gerenciadorPessoaView.getGerenciadorPessoaEntity());
 	}
 	
-//	public List<GerenciadorPessoaEntity> findAll() {
-//		GerenciadorPessoaEntity gerenciadorPessoaDomainHassya = new GerenciadorPessoaEntity();
-//			gerenciadorPessoaDomainHassya.setCodigo(1L);
-//			gerenciadorPessoaDomainHassya.setNome("Hassya Havivah");
-//			gerenciadorPessoaDomainHassya.setObservacao("");
-//			gerenciadorPessoaDomainHassya.setIsAtivo(Boolean.TRUE);
-//			gerenciadorPessoaDomainHassya.setIsFontePagamento(Boolean.TRUE);
-//			gerenciadorPessoaDomainHassya.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
-//		GerenciadorPessoaEntity gerenciadorPessoaDomainQuintinn = new GerenciadorPessoaEntity();
-//			gerenciadorPessoaDomainQuintinn.setCodigo(2L);
-//			gerenciadorPessoaDomainQuintinn.setNome("José Quintin");
-//			gerenciadorPessoaDomainQuintinn.setObservacao(null);
-//			gerenciadorPessoaDomainQuintinn.setIsAtivo(Boolean.TRUE);
-//			gerenciadorPessoaDomainQuintinn.setIsFontePagamento(Boolean.TRUE);
-//			gerenciadorPessoaDomainQuintinn.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
-//		List<GerenciadorPessoaEntity> gerenciadorPessoaDomainList = new ArrayList<GerenciadorPessoaEntity>();
-//			gerenciadorPessoaDomainList.add(gerenciadorPessoaDomainHassya);
-//			gerenciadorPessoaDomainList.add(gerenciadorPessoaDomainQuintinn);
-//		return gerenciadorPessoaDomainList;
-//	}
-	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("{nomeUsuarioSistema}/")
@@ -89,13 +70,13 @@ public class GerenciadorPessoaResource implements Serializable {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/")
 	public Response persist(GerenciadorPessoaEntity gerenciadorPessoaEntity) {
-//			LOGGER.info(gerenciadorPessoaEntity.getCodigo());
-//			LOGGER.info(gerenciadorPessoaEntity.getNome());
-//			LOGGER.info(gerenciadorPessoaEntity.getIsAtivo());
-//			LOGGER.info(gerenciadorPessoaEntity.getIsFontePagamento());
-//			LOGGER.info(gerenciadorPessoaEntity.getObservacao());
-//			LOGGER.info(gerenciadorPessoaEntity.getTipoPessoaEnumeration());
-//			LOGGER.info(gerenciadorPessoaEntity.toString());
+			LOGGER.info(gerenciadorPessoaEntity.getCodigo());
+			LOGGER.info(gerenciadorPessoaEntity.getNome());
+			LOGGER.info(gerenciadorPessoaEntity.getIsAtivo());
+			LOGGER.info(gerenciadorPessoaEntity.getIsFontePagamento());
+			LOGGER.info(gerenciadorPessoaEntity.getObservacao());
+			LOGGER.info(gerenciadorPessoaEntity.getTipoPessoaEnumeration());
+			LOGGER.info(gerenciadorPessoaEntity.toString());
 		return Response.status(Response.Status.OK).build();
 	}
 	
@@ -103,13 +84,6 @@ public class GerenciadorPessoaResource implements Serializable {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/")
 	public Response merge(GerenciadorPessoaEntity gerenciadorPessoaEntity) {
-//			LOGGER.info(gerenciadorPessoaEntity.getCodigo());
-//			LOGGER.info(gerenciadorPessoaEntity.getNome());
-//			LOGGER.info(gerenciadorPessoaEntity.getIsAtivo());
-//			LOGGER.info(gerenciadorPessoaEntity.getIsFontePagamento());
-//			LOGGER.info(gerenciadorPessoaEntity.getObservacao());
-//			LOGGER.info(gerenciadorPessoaEntity.getTipoPessoaEnumeration());
-//			LOGGER.info(gerenciadorPessoaEntity.toString());
 		return Response.status(Response.Status.OK).build();
 	}
 	
@@ -132,8 +106,8 @@ public class GerenciadorPessoaResource implements Serializable {
 		return serialVersionUID;
 	}
 	
-//	public static Logger getLogger() {
-//		return LOGGER;
-//	}
+	public static Logger getLogger() {
+		return LOGGER;
+	}
 	
 }
