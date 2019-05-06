@@ -74,5 +74,10 @@ public class GerenciadorPessoaService implements GerenciadorPessoaDaoInterface, 
 	public void setGerenciadorPessoaFactory(GerenciadorPessoaFactory gerenciadorPessoaFactory) {
 		this.gerenciadorPessoaFactory = gerenciadorPessoaFactory;
 	}
+
+	@Override
+	public GerenciadorPessoaEntity merge(GerenciadorPessoaEntity gerenciadorPessoaEntity) {
+		return gerenciadorPessoaDao.merge(gerenciadorPessoaEntity);
+	}
 	
 }

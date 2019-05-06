@@ -23,11 +23,13 @@ gerenciadorPessoaModule.controller("gerenciadorPessoaController", function($scop
      * Funcionalidade:	Responsavel por Salvar os dados de Gerenciador de Pessoa
      * */
     $scope.persist = function(gerenciadorPessoaModelSelecionado) {
-//    	$scope.remove(gerenciadorPessoaModel);
-   		if(gerenciadorPessoaModel.codigo == undefined) {
-//   			$scope.gerenciadorPessoaModelResultList.push(gerarCodigoPessoaModel(gerenciadorPessoaModel));
+    	$scope.remove(gerenciadorPessoaModelSelecionado);
+   		if(gerenciadorPessoaModelSelecionado.codigo == undefined) {
+   			$http.post(URL_PESSOA_SERVICE, gerenciadorPessoaModelSelecionado);
+   			$scope.gerenciadorPessoaModelList.push(gerarCodigoPessoaModel(gerenciadorPessoaModelSelecionado));
    		} else {
-//   			$scope.gerenciadorPessoaModelResultList.push(gerenciadorPessoaModel);
+   			$http.put(URL_PESSOA_SERVICE, gerenciadorPessoaModelSelecionado);
+   			$scope.gerenciadorPessoaModelList.push(gerenciadorPessoaModelSelecionado);
    		}
   		console.log("SUCESSO: Dados cadastrados com Sucesso!");
        	$scope.clear();
@@ -39,6 +41,18 @@ gerenciadorPessoaModule.controller("gerenciadorPessoaController", function($scop
      * */
     $scope.merge = function(gerenciadorPessoaModelSelecionado) {
     	$scope.gerenciadorPessoaModel = angular.copy(gerenciadorPessoaModelSelecionado);
+    };
+    
+    /**
+     * Funcionalidade:	Responsavel por remover os dados de Gerenciador de Pessoa
+     * */
+    $scope.remove = function(gerenciadorPessoaModelSelecionado) {
+//    	recuperarRegistroCadastrado(gerenciadorPessoaModelSelecionado);
+    	for( var indiceX = 0 ; indiceX < $scope.gerenciadorPessoaModelList.length ; indiceX++ ) {
+    		if($scope.gerenciadorPessoaModelList[indiceX].codigo == gerenciadorPessoaModelSelecionado.codigo) {
+    			$scope.gerenciadorPessoaModelList.splice(indiceX, 1);
+    		}
+    	}
     };
     
     /**

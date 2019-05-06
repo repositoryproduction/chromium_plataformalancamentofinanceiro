@@ -34,7 +34,9 @@ public class BaseRepository<T> implements Serializable {
 	}
 	
 	public T merge(T object) {
-		entityManager.merge(object);
+		getBeginTransaction();
+			entityManager.merge(object);
+		getCommitTransaction();
 		return object;
 	}
 	

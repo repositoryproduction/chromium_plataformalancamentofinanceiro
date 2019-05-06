@@ -195,7 +195,7 @@
 						<li class="has-submenu"><a href="../../../index.html"><i class="fi-air-play"></i> <span> Visão Geral </span> </a></li>
 
 
-						<li class="has-submenu"><a href="#"><i class="fi-briefcase"></i><span> Funcionalidades de Gerenciamento
+						<li class="has-submenu"><a href="#"><i class="fi-briefcase"></i><span> Gerenciamento
 								</span> </a>
 							<ul class="submenu megamenu">
 								<li>
@@ -388,10 +388,14 @@
 								<div class="form-group col-md-5">
 									<label for="tipoPessoaEnumeration">Tipo de Pessoa</label>
 									<select id="tipoPessoaEnumeration" name="tipoPessoaEnumeration" ng-model="gerenciadorPessoaModel.tipoPessoaEnumeration" class="form-control">
-										<option>Pessoa Física</option>
-										<option>Pessoa Jurídica</option>
-										<option>Pessoa Autoridade</option>
-										<option>Pessoa do Sistema</option>
+<!-- 										<option>Pessoa Física</option> -->
+										<option>PESSOA_FISICA</option>
+										<option>PESSOA_JURIDICA</option>
+										<option>PESSOA_SISTEMA</option>
+										<option>PESSOA_AUTORIDADE</option>
+<!-- 										<option>Pessoa Jurídica</option> -->
+<!-- 										<option>Pessoa Autoridade</option> -->
+<!-- 										<option>Pessoa do Sistema</option> -->
 									</select>
 								</div>
 
@@ -400,9 +404,8 @@
 										<div class="row">
 											<div class="col-md-10">
 												<button id="saveButton" type="submit"
-													ng-click="verificador(gerenciadorAtivoCirculanteModel)"
-													class="btn btn-primary btn-block">Cadastrar Ativo
-													Circulante</button>
+													ng-click="persist(gerenciadorPessoaModel)"
+													class="btn btn-primary btn-block"> Cadastrar </button>
 											</div>
 											<div class="col-md-2">
 												<button id="cancelButton" type="button" ng-click="clear()"
@@ -423,7 +426,7 @@
 			</div>
 			<!-- end row -->
 			
-			<div class="row" ng-show="true">
+			<div class="row" ng-show="true" ng-if="gerenciadorPessoaModelList.length != 0">
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body table-responsive">
@@ -447,7 +450,7 @@
                                         <td ng-dblclick="merge(gerenciadorPessoaModelResult)">{{gerenciadorPessoaModelResult.nome}}</td>
                                         <td ng-dblclick="merge(gerenciadorPessoaModelResult)">{{gerenciadorPessoaModelResult.isAtivo}}</td>
                                         <td ng-dblclick="merge(gerenciadorPessoaModelResult)">{{gerenciadorPessoaModelResult.isFontePagamento}}</td>
-                                        <td ng-dblclick="merge(gerenciadorPessoaModelResult)">{{gerenciadorPessoaModelResult.tipoPessoaEnumeration.getDescricao()}}</td>
+                                        <td ng-dblclick="merge(gerenciadorPessoaModelResult)">{{gerenciadorPessoaModelResult.tipoPessoaEnumeration}}</td>
                                         <td>
                                         	<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"> 
                                         		<i class="fa fa-edit"></i> 

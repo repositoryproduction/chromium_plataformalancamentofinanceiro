@@ -70,12 +70,7 @@ public class GerenciadorPessoaResource implements Serializable {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/")
 	public Response persist(GerenciadorPessoaEntity gerenciadorPessoaEntity) {
-			LOGGER.info(gerenciadorPessoaEntity.getCodigo());
-			LOGGER.info(gerenciadorPessoaEntity.getNome());
-			LOGGER.info(gerenciadorPessoaEntity.getIsAtivo());
-			LOGGER.info(gerenciadorPessoaEntity.getIsFontePagamento());
-			LOGGER.info(gerenciadorPessoaEntity.getObservacao());
-			LOGGER.info(gerenciadorPessoaEntity.getTipoPessoaEnumeration());
+		gerenciadorPessoaService.persist(gerenciadorPessoaEntity);
 			LOGGER.info(gerenciadorPessoaEntity.toString());
 		return Response.status(Response.Status.OK).build();
 	}
@@ -84,6 +79,7 @@ public class GerenciadorPessoaResource implements Serializable {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/")
 	public Response merge(GerenciadorPessoaEntity gerenciadorPessoaEntity) {
+		gerenciadorPessoaService.merge(gerenciadorPessoaEntity);
 		return Response.status(Response.Status.OK).build();
 	}
 	
