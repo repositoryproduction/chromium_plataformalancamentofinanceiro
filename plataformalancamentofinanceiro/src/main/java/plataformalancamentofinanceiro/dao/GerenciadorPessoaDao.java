@@ -24,12 +24,6 @@ public class GerenciadorPessoaDao extends BaseRepository<GerenciadorPessoaEntity
 	}
 
 	@Override
-	public GerenciadorPessoaEntity delete(GerenciadorPessoaEntity gerenciadorPessoaEntity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public GerenciadorPessoaEntity update(GerenciadorPessoaEntity gerenciadorPessoaEntity) {
 		// TODO Auto-generated method stub
 		return null;
@@ -43,17 +37,38 @@ public class GerenciadorPessoaDao extends BaseRepository<GerenciadorPessoaEntity
 		Query query = baseRepository.getEntityManager().createQuery(stringBuilder.toString());
 		return query.getResultList();
 	}
+	
+	@Override
+	public GerenciadorPessoaEntity remove(Long codigo) {
+		getBeginTransaction();
+			getEntityManager().remove(findOne(codigo));
+		getCommitTransaction();
+		return null;
+	}
 
 	@Override
 	public GerenciadorPessoaEntity findOne(Long codigo) {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder stringBuilder = new StringBuilder()
+			.append("SELECT gerenciadorPessoaEntity_ ")
+			.append("FROM GerenciadorPessoaEntity gerenciadorPessoaEntity_ ")
+			.append("WHERE gerenciadorPessoaEntity_.codigo = :codigo ");
+		Query query = getEntityManager().createQuery(stringBuilder.toString());
+			query.setParameter("codigo", codigo);
+		return (GerenciadorPessoaEntity) query.getSingleResult();
 	}
 
 	@Override
 	public GerenciadorPessoaEntity findOne(String nome) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public Long recuperarIdentificador() {
+		StringBuilder stringBuilder = new StringBuilder()
+			.append("SELECT MAX(gerenciadorPessoaEntity_.codigo + 1) ")
+			.append("FROM GerenciadorPessoaEntity gerenciadorPessoaEntity_ ");
+		Query query = getEntityManager().createQuery(stringBuilder.toString());
+		return (Long) query.getSingleResult();
 	}
 
 }

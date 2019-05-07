@@ -18,6 +18,7 @@ import org.jboss.logging.Logger;
 
 import plataformalancamentofinanceiro.entity.GerenciadorPessoaEntity;
 import plataformalancamentofinanceiro.enumeration.TipoPessoaEnumeration;
+import plataformalancamentofinanceiro.factory.GerenciadorPessoaFactory;
 import plataformalancamentofinanceiro.service.GerenciadorPessoaService;
 import plataformalancamentofinanceiro.view.GerenciadorPessoaView;
 
@@ -34,9 +35,12 @@ public class GerenciadorPessoaResource implements Serializable {
 	
 	private GerenciadorPessoaView gerenciadorPessoaView;
 	
+	private GerenciadorPessoaFactory gerenciadorPessoaFactory;
+	
 	public GerenciadorPessoaResource() {
 		gerenciadorPessoaService = new GerenciadorPessoaService();
 		gerenciadorPessoaView = new GerenciadorPessoaView();
+		gerenciadorPessoaFactory = new GerenciadorPessoaFactory();
 	}
 	
 	@GET
@@ -70,7 +74,7 @@ public class GerenciadorPessoaResource implements Serializable {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/")
 	public Response persist(GerenciadorPessoaEntity gerenciadorPessoaEntity) {
-		gerenciadorPessoaService.persist(gerenciadorPessoaEntity);
+		gerenciadorPessoaService.persist(GerenciadorPessoaFactory.obterNovaPessoaFisica(gerenciadorPessoaEntity));
 			LOGGER.info(gerenciadorPessoaEntity.toString());
 		return Response.status(Response.Status.OK).build();
 	}
@@ -86,7 +90,8 @@ public class GerenciadorPessoaResource implements Serializable {
 	@DELETE
 	@Path("{codigo}/")
 	public Response remove(@PathParam("codigo") Long codigo) {
-//		LOGGER.info("Dados excluido com sucesso: " + codigo);
+		gerenciadorPessoaService.remove(codigo);
+		LOGGER.info("Dados excluido com sucesso: " + codigo);
 		return Response.status(Response.Status.OK).build();
 	}
 
@@ -104,6 +109,22 @@ public class GerenciadorPessoaResource implements Serializable {
 	
 	public static Logger getLogger() {
 		return LOGGER;
+	}
+
+	public GerenciadorPessoaView getGerenciadorPessoaView() {
+		return gerenciadorPessoaView;
+	}
+
+	public void setGerenciadorPessoaView(GerenciadorPessoaView gerenciadorPessoaView) {
+		this.gerenciadorPessoaView = gerenciadorPessoaView;
+	}
+
+	public GerenciadorPessoaFactory getGerenciadorPessoaFactory() {
+		return gerenciadorPessoaFactory;
+	}
+
+	public void setGerenciadorPessoaFactory(GerenciadorPessoaFactory gerenciadorPessoaFactory) {
+		this.gerenciadorPessoaFactory = gerenciadorPessoaFactory;
 	}
 	
 }

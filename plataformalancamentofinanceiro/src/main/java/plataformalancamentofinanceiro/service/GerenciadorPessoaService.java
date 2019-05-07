@@ -18,7 +18,6 @@ public class GerenciadorPessoaService implements GerenciadorPessoaDaoInterface, 
 	
 	public GerenciadorPessoaService() {
 		gerenciadorPessoaDao = new GerenciadorPessoaDao();
-		gerenciadorPessoaFactory = new GerenciadorPessoaFactory();
 	}
 
 	@Override
@@ -27,9 +26,8 @@ public class GerenciadorPessoaService implements GerenciadorPessoaDaoInterface, 
 	}
 
 	@Override
-	public GerenciadorPessoaEntity delete(GerenciadorPessoaEntity gerenciadorPessoaEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public GerenciadorPessoaEntity remove(Long codigo) {
+		return this.gerenciadorPessoaDao.remove(codigo);
 	}
 
 	@Override
@@ -53,6 +51,10 @@ public class GerenciadorPessoaService implements GerenciadorPessoaDaoInterface, 
 	public GerenciadorPessoaEntity findOne(String nome) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public Long recuperarIdentificador() {
+		return gerenciadorPessoaDao.recuperarIdentificador();
 	}
 	
 	public GerenciadorPessoaDao getGerenciadorPessoaDao() {

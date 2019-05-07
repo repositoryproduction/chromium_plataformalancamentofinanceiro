@@ -452,11 +452,11 @@
                                         <td ng-dblclick="merge(gerenciadorPessoaModelResult)">{{gerenciadorPessoaModelResult.isFontePagamento}}</td>
                                         <td ng-dblclick="merge(gerenciadorPessoaModelResult)">{{gerenciadorPessoaModelResult.tipoPessoaEnumeration}}</td>
                                         <td>
-                                        	<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"> 
+                                        	<button type="button" ng-click="merge(gerenciadorPessoaModelResult)" class="btn btn-icon waves-effect waves-light btn-primary"> 
                                         		<i class="fa fa-edit"></i> 
                                         	</button>
-                                        	<button type="button" ng-click="merge(gerenciadorPessoaModelResult)" class="btn btn-icon waves-effect waves-light btn-danger"> 
-                                        		<i class="fa fa-remove"></i> 
+                                        	<button type="button" ng-click="remove(gerenciadorPessoaModelResult)" class="btn btn-icon waves-effect waves-light btn-danger"> 
+                                        		<i class="fa fa-remove"></i>
                                         	</button>
                                         </td>
                                     </tr>
