@@ -23,8 +23,9 @@ gerenciadorPessoaModule.controller("gerenciadorPessoaController", function($scop
      * Funcionalidade:	Responsavel por Salvar os dados de Gerenciador de Pessoa
      * */
     $scope.persist = function(gerenciadorPessoaModelSelecionado) {
-    	$scope.remove(gerenciadorPessoaModelSelecionado);
-   		if(gerenciadorPessoaModelSelecionado.codigo == undefined) {
+    	$scope.remove_(gerenciadorPessoaModelSelecionado);
+   		if(gerenciadorPessoaModelSelecionado.codigo == undefined || gerenciadorPessoaModelSelecionado.codigo == null) {
+   			gerenciadorPessoaModelSelecionado.codigo = gerenciadorPessoaModelSelecionado.codigo == null ? null : gerenciadorPessoaModelSelecionado.codigo;
    			$http.post(URL_PESSOA_SERVICE, gerenciadorPessoaModelSelecionado);
    			$scope.gerenciadorPessoaModelList.push(gerarCodigoPessoaModel(gerenciadorPessoaModelSelecionado));
    		} else {
@@ -46,10 +47,23 @@ gerenciadorPessoaModule.controller("gerenciadorPessoaController", function($scop
     /**
      * Funcionalidade:	Responsavel por remover os dados de Gerenciador de Pessoa
      * */
+    $scope.remove_ = function(gerenciadorPessoaModelSelecionado) {
+//    	recuperarRegistroCadastrado(gerenciadorPessoaModelSelecionado);
+    	for( var indiceX = 0 ; indiceX < $scope.gerenciadorPessoaModelList.length ; indiceX++ ) {
+    		if($scope.gerenciadorPessoaModelList[indiceX].codigo == gerenciadorPessoaModelSelecionado.codigo) {
+    			$scope.gerenciadorPessoaModelList.splice(indiceX, 1);
+    		}
+    	}
+    };
+    
+    /**
+     * Funcionalidade:	Responsavel por remover os dados de Gerenciador de Pessoa
+     * */
     $scope.remove = function(gerenciadorPessoaModelSelecionado) {
 //    	recuperarRegistroCadastrado(gerenciadorPessoaModelSelecionado);
     	for( var indiceX = 0 ; indiceX < $scope.gerenciadorPessoaModelList.length ; indiceX++ ) {
     		if($scope.gerenciadorPessoaModelList[indiceX].codigo == gerenciadorPessoaModelSelecionado.codigo) {
+    			$http.delete(URL_PESSOA_SERVICE + '/' + gerenciadorPessoaModelSelecionado.codigo);
     			$scope.gerenciadorPessoaModelList.splice(indiceX, 1);
     		}
     	}

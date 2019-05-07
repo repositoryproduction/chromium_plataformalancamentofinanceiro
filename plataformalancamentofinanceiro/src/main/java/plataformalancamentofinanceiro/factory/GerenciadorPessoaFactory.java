@@ -29,22 +29,8 @@ public class GerenciadorPessoaFactory implements Serializable {
 		return gerenciadorPessoaEntity;
 	}
 	
-	public static GerenciadorPessoaEntity obterNovaPessoaFisica(GerenciadorPessoaEntity gerenciadorPessoaDomainParameter) {
-		GerenciadorPessoaEntity gerenciadorPessoaEntity = new GerenciadorPessoaEntity();
-			if(gerenciadorPessoaDomainParameter.getCodigo() == null) {
-				gerenciadorPessoaEntity.setCodigo(gerenciadorPessoaService.recuperarIdentificador());
-			} else {
-				gerenciadorPessoaEntity.setCodigo(gerenciadorPessoaDomainParameter.getCodigo());
-			}
-			gerenciadorPessoaEntity.setNome(gerenciadorPessoaDomainParameter.getNome());
-			gerenciadorPessoaEntity.setObservacao(gerenciadorPessoaDomainParameter.getObservacao());
+	public static GerenciadorPessoaEntity obterNovaPessoaFisica(GerenciadorPessoaEntity gerenciadorPessoaEntity) {
 			gerenciadorPessoaEntity.setIsAtivo(Boolean.TRUE);
-			gerenciadorPessoaEntity.setIsFontePagamento(Boolean.TRUE);
-			if(gerenciadorPessoaDomainParameter.getTipoPessoaEnumeration() == null) {
-				gerenciadorPessoaEntity.setTipoPessoaEnumeration(TipoPessoaEnumeration.PESSOA_FISICA);
-			} else {
-				gerenciadorPessoaEntity.setTipoPessoaEnumeration(gerenciadorPessoaDomainParameter.getTipoPessoaEnumeration());
-			}
 		return gerenciadorPessoaEntity;
 	}
 	

@@ -350,16 +350,13 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="page-title-box">
-
 						<ol class="breadcrumb float-right p-0 m-0">
 							<li><a href="#">Principal</a></li>
 							<li><a href="#">Gerenciamento de Usuários do Sistema</a></li>
 							<li class="active">Usuários</li>
-
 						</ol>
-						<h4 class="page-title m-0">Usuários do Sistema</h4>
 					</div>
-
+					<h6></h6>
 				</div>
 			</div>
 			<!-- end row -->
@@ -380,12 +377,12 @@
 									<input id="codigo" name="codigo" ng-model="gerenciadorPessoaModel.codigo" type="text" class="form-control" disabled="disabled"/>
 								</div>
 								
-								<div class="form-group col-md-5">
+								<div class="form-group col-md-10">
 									<label for="nome">Nome da Pessoa</label>
 									<input id="nomePessoa" name="nomePessoa" ng-model="gerenciadorPessoaModel.nome" type="text" placeholder="Informe o Nome da Pessoa" class="form-control" />
 								</div>
 
-								<div class="form-group col-md-5">
+								<div class="form-group col-md-6">
 									<label for="tipoPessoaEnumeration">Tipo de Pessoa</label>
 									<select id="tipoPessoaEnumeration" name="tipoPessoaEnumeration" ng-model="gerenciadorPessoaModel.tipoPessoaEnumeration" class="form-control">
 <!-- 										<option>Pessoa Física</option> -->
@@ -396,6 +393,16 @@
 <!-- 										<option>Pessoa Jurídica</option> -->
 <!-- 										<option>Pessoa Autoridade</option> -->
 <!-- 										<option>Pessoa do Sistema</option> -->
+									</select>
+								</div>
+								
+								<div class="form-group col-md-6">
+									<label for="isFontePagamento">Fonte de Pagamento</label>
+									<select id="isFontePagamento" name="isFontePagamento" ng-model="gerenciadorPessoaModel.isFontePagamento" class="form-control">
+<!-- 										<option>Pessoa Física</option> -->
+												<option>Selecione</option>
+												<option value="true">Sim</option>
+												<option value="false">Não</option>
 									</select>
 								</div>
 
