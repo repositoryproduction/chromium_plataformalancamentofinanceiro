@@ -6,6 +6,8 @@ gerenciadorPessoaModule.controller("gerenciadorPessoaController", function($scop
 	
 	$scope.gerenciadorPessoaModelList = [];
 	
+	$scope.isApresentaMensagemSucesso = false;
+	
 	/**
      * Funcionalidade: Responsavel por recuperar os dados do cadastro de pessoas
 	 * URL do Servico de Gerenciador de Pessoa
@@ -24,15 +26,16 @@ gerenciadorPessoaModule.controller("gerenciadorPessoaController", function($scop
      * */
     $scope.persist = function(gerenciadorPessoaModelSelecionado) {
     	$scope.remove_(gerenciadorPessoaModelSelecionado);
-   		if(gerenciadorPessoaModelSelecionado.codigo == undefined || gerenciadorPessoaModelSelecionado.codigo == null) {
+    	if(gerenciadorPessoaModelSelecionado.codigo == undefined || gerenciadorPessoaModelSelecionado.codigo == null) {
    			gerenciadorPessoaModelSelecionado.codigo = gerenciadorPessoaModelSelecionado.codigo == null ? null : gerenciadorPessoaModelSelecionado.codigo;
    			$http.post(URL_PESSOA_SERVICE, gerenciadorPessoaModelSelecionado);
-   			$scope.gerenciadorPessoaModelList.push(gerarCodigoPessoaModel(gerenciadorPessoaModelSelecionado));
+   			$scope.gerenciadorPessoaModelList.push(gerenciadorPessoaModelSelecionado);
    		} else {
    			$http.put(URL_PESSOA_SERVICE, gerenciadorPessoaModelSelecionado);
    			$scope.gerenciadorPessoaModelList.push(gerenciadorPessoaModelSelecionado);
    		}
   		console.log("SUCESSO: Dados cadastrados com Sucesso!");
+  		$scope.isApresentaMensagemSucesso = true;
        	$scope.clear();
     };
     
@@ -48,7 +51,6 @@ gerenciadorPessoaModule.controller("gerenciadorPessoaController", function($scop
      * Funcionalidade:	Responsavel por remover os dados de Gerenciador de Pessoa
      * */
     $scope.remove_ = function(gerenciadorPessoaModelSelecionado) {
-//    	recuperarRegistroCadastrado(gerenciadorPessoaModelSelecionado);
     	for( var indiceX = 0 ; indiceX < $scope.gerenciadorPessoaModelList.length ; indiceX++ ) {
     		if($scope.gerenciadorPessoaModelList[indiceX].codigo == gerenciadorPessoaModelSelecionado.codigo) {
     			$scope.gerenciadorPessoaModelList.splice(indiceX, 1);
@@ -67,6 +69,22 @@ gerenciadorPessoaModule.controller("gerenciadorPessoaController", function($scop
     			$scope.gerenciadorPessoaModelList.splice(indiceX, 1);
     		}
     	}
+    	$scope.clear();
+    };
+    
+    /**
+     * Funcionalidade:	Responsavel por limpar formulario
+     */
+    function gerenciadorPessoaConfiguration(gerenciadorPessoaModelSelecionado) {
+    	$scope.gerenciadorPessoaModel = [{
+    		codigo: gerenciadorPessoaModelSelecionado.codigo == undefined ? null : gerenciadorPessoaModelSelecionado.codigo,
+    		isAtivo: true,
+    		isFontePagamento: gerenciadorPessoaModelSelecionado.isFontePagamento != undefined ? gerenciadorPessoaModelSelecionado.isFontePagamento : null,
+    		nome: gerenciadorPessoaModelSelecionado.nome != undefined ? gerenciadorPessoaModelSelecionado.nome : null,
+    		observacao: null,
+    		tipoPessoaEnumeration: gerenciadorPessoaModelSelecionado.tipoPessoaEnumeration != undefined ? gerenciadorPessoaModelSelecionado.tipoPessoaEnumeration : null,
+    	}];
+    	return $scope.gerenciadorPessoaModel;
     };
     
     /**
